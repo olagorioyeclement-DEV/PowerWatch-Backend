@@ -1,0 +1,16 @@
+django-cors-headers
+django-filter
+psycopg2-binary
+
+# Geospatial
+geopy
+geopandas
+
+# AI & Machine Learning
+torch
+pandas
+scikit-learn
+ortools
+
+# Utilities
+python-dotenv
