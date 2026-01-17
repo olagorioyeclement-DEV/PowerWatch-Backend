@@ -15,6 +15,21 @@ class SignUpSerializer(serializers.ModelSerializer):
         fields = ['username', 'email', 'password', 'first_name', 'last_name', 'phone']
         extra_kwargs = {'password': {'write_only': True}}
 
+    def validate_username(self, value):
+        if User.objects.filter(username=value).exists():
+            raise serializers.ValidationError('Username Already Exists')
+        return value
+
+    def validate_email(self, value):
+        if User.objects.filter(email=value).exists():
+            raise serializers.ValidationError('Email Already Exists')
+        return value
+
+    def validate_phone(self, value):
+        if UserProfile.objects.filter(phone=value).exists():
+            raise serializers.ValidationError('Phone Number Already Exists')
+        return value
+
     def validate_password(self, value):
         validate_password(value)
         return value

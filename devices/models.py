@@ -7,6 +7,7 @@ class Device(models.Model):
     device_uid = models.CharField(max_length=50, unique=True)
     api_key = models.CharField(max_length=64, unique=True)
     last_seen = models.DateTimeField(null=True, blank=True)
+    is_active = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
         if not self.api_key:
