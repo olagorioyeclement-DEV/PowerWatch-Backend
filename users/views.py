@@ -1,3 +1,4 @@
+from rest_framework.generics import RetrieveDestroyAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
@@ -55,11 +56,25 @@ class HouseListView(generics.ListAPIView):
     def get_queryset(self):
         return House.objects.filter(user=self.request.user)
 
+class HouseDetailView(RetrieveDestroyAPIView):
+    serializer_class = HouseSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return House.objects.filter(user=self.request.user)
+
 class DeviceCreateView(generics.CreateAPIView):
     serializer_class = DeviceSerializer
     permission_classes = [IsAuthenticated]
 
 class DeviceListView(generics.ListAPIView):
+    serializer_class = DeviceSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Device.objects.filter(house__user=self.request.user)
+
+class DeviceDetailView(RetrieveDestroyAPIView):
     serializer_class = DeviceSerializer
     permission_classes = [IsAuthenticated]
 

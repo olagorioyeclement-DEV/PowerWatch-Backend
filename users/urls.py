@@ -2,7 +2,8 @@ from django.urls import path
 from .views import (
     SignUpView, LoginView,
     HouseCreateView, HouseListView,
-    DeviceCreateView, DeviceListView
+    DeviceCreateView, DeviceListView,
+    HouseDetailView,
 )
 
 urlpatterns = [
@@ -13,6 +14,7 @@ urlpatterns = [
     # Houses
     path('houses/', HouseListView.as_view(), name='house-list'),
     path('houses/create/', HouseCreateView.as_view(), name='house-create'),
+    path('houses/<int:pk>/', HouseDetailView.as_view(), name='house-detail'),
 
     # Devices
     path('devices/', DeviceListView.as_view(), name='device-list'),

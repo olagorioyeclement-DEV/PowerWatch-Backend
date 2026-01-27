@@ -53,6 +53,7 @@ class HouseSerializer(serializers.ModelSerializer):
         user = self.context['request'].user
         return House.objects.create(user=user, **validated_data)
 
+
 class DeviceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Device

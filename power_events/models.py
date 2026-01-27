@@ -11,8 +11,9 @@ class PowerEvent(models.Model):
     device = models.ForeignKey(Device, on_delete=models.CASCADE, related_name="events")
     status = models.CharField(max_length=3, choices=STATUS_CHOICES)
     timestamp = models.DateTimeField(auto_now_add=True)
+    power = models.FloatField(null=True, blank=True)
 
     def __str__(self):
-        return f"{self.device.device_uid} - {self.status}"
+        return f"{self.device.device_uid} - {self.power}W {self.status}"
 
 
